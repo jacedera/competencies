@@ -16,14 +16,18 @@
               */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <windows.h>
+#include "RandomizerFun.c"
+
 
 int main(){
 	// note: use strings and atoi. Ignore anything that isn't 0, 1, 2, or 3.
-	char input[255];
-	int choice=9;
+	char szUserInput[255];
+	int iChoice=9;
 			
-	while(choice != 0){
+	while(iChoice != 0){
 		// begin menu options
 		printf("Welcome to Randomizer. Please select an option:\n");
 		printf("0: Exit Randomizer\n");
@@ -32,31 +36,35 @@ int main(){
 		printf("3: Volume of a Cube\n");
 		printf("Selection: ");
 
-        scanf("%s", &input);
+        scanf("%s", &szUserInput);
         
-        if(strcmp(input, "0")==0 || strcmp(input, "1")==0 ||
-           strcmp(input, "2")==0 || strcmp(input, "3")==0){
+		// atoi returns 0 if the input is invalid. we want to know if the input is a valid 0.
+        if(strcmp(szUserInput, "0")==0 || strcmp(szUserInput, "1")==0 ||
+           strcmp(szUserInput, "2")==0 || strcmp(szUserInput, "3")==0){
 			
-			choice = atoi(input);
+			iChoice = atoi(szUserInput);
         
-			if(choice == 1) {
+			if(iChoice == 1) {
 				printf("Dice roll.\n");
-				system("pause");
+				return DiceRoll();
 			}
-			else if(choice == 2){
+			else if(iChoice == 2){
 				printf("Area of Circle.\n");
-				system("pause");
+				return CalculateCircleArea();
 			} 
-			else if(choice == 3){
+			else if(iChoice == 3){
 				printf("Volume of Cube.\n");
-				system("pause");
+				return CalculateCubeVolume();
             }
-			else if(choice == 0){
+			else if(iChoice == 0){
 				printf("Exiting...");
-				return 0;
 			}
 		}
-		else printf("Invalid option, please try again.");
+		else {
+			printf("Invalid option, exiting...\n");
+			system("pause");
+			return -1;
+		}
 	}
-    return 0;
+    return 0; // unnecessary? --Refer to patches o'houlihan. 
 }
