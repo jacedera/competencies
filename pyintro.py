@@ -55,6 +55,7 @@ def defining_basic_types():
 	''' Strings are "sort of" like a list of characters, you can operate on them similarly '''
 	d = "I LOVE PYTHON!"
 	print d[0:5]	# prints -> "I LOV"
+                # Closer to [0,5) for you math types. -JKA
 	print d[5:]	# prints -> "E PYTHON!"
 	print d[-1]	# prints -> "!".  -2, -3, -4, etc... iterate backwards!
 	
@@ -73,7 +74,8 @@ def booleans():
 	if a != b:	# not equal (!=) also evaluates to "True" or "False"
 		print a, b # this will print
 	# Also keep in mind that <, <=, >, >=, will also evaluate to True or False
-	
+	# But what does True>False, etc evaluate to? --JKA
+    
 	''' Basic types... used like booleans? What? '''
 	a = 0	# ints with value 0
 	b = ""	# empty strings
@@ -167,7 +169,7 @@ def greet(name):
 	#str1('Bob')-> 'Hello Bob!'
 	#str1('Alice')-> 'Hello Alice!'
 	#str1('X')-> 'Hello X!'
-	Greeting = ""
+	Greeting = "Hello "+name+"!"
 	
 	return Greeting
 
@@ -175,27 +177,38 @@ def abba(a,b):
 	# Given two strings, a and b, return the result of putting them in 
 	# the order of abba.  e.g. "Hi" and "Bye" returns "HiByeByeHi"	
 
-	return 
+	return a+b+b+a
 
 def slice_us(out,word):
 	# Given an "out" string length of 4, such as "<<>>", and a word
 	# return a new string (c)  where the word is in the middle of the out
 	# string.  e.g. slice_us("<<>>", "word") -> "<<word>>"
 
-	return 
+	return out[0]+out[1]+word+out[2]+out[3]
 
 def duplicate(s,n):
 	# Given a string s and a number n, return a new string made of
 	# n copies of the last 2 chars in the original str. (hint: slicing)
 	# e.g. duplicate("word", 4) -> "rdrdrdrd"
+    a = 0
+    ns = ""
+    while(a<n):
+        ns += s[-2:]
+        a += 1
 
-	return 
+	return ns
 
 def shortlongshort(s1,s2):
 	# Given 2 strings, return a new string in the form of shortlongshort
 	# use len(s) to figure out the length of a str
-
-	return 
+    ns = ""
+    ls1 = len(s1)
+    ls2 = len(s2)
+    if ls1 > ls2:
+        ns = s2+s1+s2
+    else ns = s1+s2+s1
+    
+	return ns
 	
 	
 
@@ -205,25 +218,46 @@ def shortlongshort(s1,s2):
 def adding(a,b):
 	# return the sum of the two values
 	# unless the values are the same, then double their sum
-	c = ""
-	return 
+    if a == b:
+        c = a+a+b+b
+	else:
+        c = a+b
+    return c
 
 def abs_dif(n):
 	# given an int n, return the absolute value of the difference between n and 21
 	# double it if n is over 21
 	# use abs(calculation) to give you the absolute value
-	c = ""
-	return 
+	c = abs(21-n)
+    if n > 21:
+        c = c*c
+    
+	return c
 
 def tens(a,b):
 	# given 2 ints, return True if one of them is 10, or if their sum is 10
 	# else return false
-	return
+    d = a+b
+    if a == 10:
+        c = True
+    elif b == 10:
+        c = True
+    elif d == 10:
+        c = True
+    else:
+        c = False
+	return c
 
 def hundreds(n):
 	# given an int n, return True if it is within 10 of 100
 	# note: abs(num) computes the absolute value of a number
-	return 
+    a = n - 100
+    if abs(a) < 10:
+        c = True
+    else:
+        c = False
+    
+	return c
 
 def negatives(a,b,negative):
 	# given 2 int values, return True if one is negative and one is positive
