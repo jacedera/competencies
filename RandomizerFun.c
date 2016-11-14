@@ -64,7 +64,7 @@ int DiceRoll(){
 	}
 	system("pause");
 	return 0;
-}
+} // DiceRoll
 
 // CalculateCircleArea. User inputs radius. 
 // Input sanitation must be utilized. 
@@ -91,15 +91,53 @@ int CalculateCircleArea(){
 	dbResult = 0.5 * dbPi * (dbRadius * dbRadius);
 	printf("Result is: %.3f.\n", dbResult);
 	printf("Would you like to save your result to a file? (Y/N)");
-	
+// Still needs file stuff.
 	system("pause");
 	return 0;
-}
+} // CalculateCircleArea
 
 // CalculateCubeVolume. User inputs height, width, and depth. 
 // Input sanitation must be utilized. 
 // Print out the volume of the cube. 
 // User has option to save result to a text file.
 int CalculateCubeVolume(){
-	
-}
+	double dbLength, dbWidth, dbDepth, dbResult;
+    char szLength, szWidth, szDepth, szAnswer;
+    
+    // length
+    printf("Input cube length: ");
+    scanf("%s", &szLength);
+    if(dbLength<=0){
+		printf("Invalid (input is zero, begins with non-integers, or is negative)\nExiting...\n");
+		system("pause");
+		return -1;
+	}
+    
+    // width
+    printf("Input cube width: ");
+    scanf("%s", &szWidth);
+    dbWidth = atof(szWidth);    
+    if(dbWidth<=0){
+		printf("Invalid (input is zero, begins with non-integers, or is negative)\nExiting...\n");
+		system("pause");
+		return -1;
+	}
+    
+    // depth
+    printf("Input cube depth: ");
+    scanf("%s", &szDepth);
+    dbDepth = atof(szDepth);    
+    if(dbDepth<=0){
+		printf("Invalid (input is zero, begins with non-integers, or is negative)\nExiting...\n");
+		system("pause");
+		return -1;
+	}
+    
+    dbResult = dbLength * dbWidth * dbDepth;
+    
+    printf("Result is: %.3f.\n", dbResult);
+    printf("Would you like to save your result to a file? (Y/N)");
+ // needs file stuff
+    system("pause");
+    return 0;
+} // CalculateCubeVolume

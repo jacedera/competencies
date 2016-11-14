@@ -467,6 +467,7 @@ def pop_while(l):
 	# Given a list of integers (l), use a while loop that tests if l evalutes to True (not empty)
     # note: i don't understand what the above statement means by "if l evaluates to true" -JKA
 	# If l is not empty, use l.pop() to add the numbers in the list to m
+    # note: l will become an empty list. m will become l but backwards. -JKA
 	# return l and m
 	m = []
 	
