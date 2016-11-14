@@ -230,7 +230,7 @@ def abs_dif(n):
 	# use abs(calculation) to give you the absolute value
 	c = abs(21-n)
     if n > 21:
-        c = c*c
+        c = c+c
     
 	return c
 
@@ -263,7 +263,24 @@ def negatives(a,b,negative):
 	# given 2 int values, return True if one is negative and one is positive
 	# Except if the paramater "negative" is True, then return True only if both are negative
 	# otherwise return false
-	return 
+    if negative==True:
+        if a<0:
+            if b<0:
+                c = True
+        else:
+            c = False
+    elif negative==False:
+        if a>=0:
+            if b>=0:
+                c = False
+            elif b<0:
+                c = True
+        elif a<0:
+            if b>=0:
+                c = True
+            elif b<0:
+                c = False
+	return c
 
 	
 
@@ -274,32 +291,70 @@ def sixes(a):
 	# given a list of integers a, return True if 6 appears as either
 	# the first or last element.  The array length will be one or more
 	# hint: use a for loop
-	for i in a:
-		# do things
-		pass	# this is command that says "do nothing"
-		
-	return # don't forget to return True or False
+    # extra hint: can I not? it's easier and faster to use len(a).  -JKA
+    last = len(a)-1
+    if a[0] == 6:
+        b = True
+    elif a[last] == 6:
+        b = True
+    else:
+        b = False		
+	return b # don't forget to return True or False
 
 def same_length(a):
 	# given an array of ints, return True if the array is length 1 or more
 	# and the first element and the last element are the same value
 	# list2([1,2,3,4]) -> False
 	# list2([1,2,3,1]) -> True
+    length = len(a)
+    if len == 0:
+        c = False
+    else 
+        first = a[0]
+        last = a[len(a)-1]
+        if first == last:
+            c = True
+        else:
+            c = False
 	
-	return # don't forget to return True or False
+	return c # don't forget to return True or False
 
 def sum_list(l):
 	# given an array of integers, return the sum of those integers
 	# there is a built in function that does this already, bonus points if you use it
 	# type "dir(__builtins__)" in the python console to view a list of builtin functions
-	
-	return
+	# extra hint: that's too easy. also i'm ironically lazy. -JKA
+    sum = 0
+    for i in l:
+        sum += l[i]
+    
+	return sum
 
 def rotate_slice(l):
 	# given a list l, rotate it left by 2 spaces
 	# [1,2,3,4] -> [3,4,1,2]
 	# use slicing, do not create a new list
 	
+    length = len(l)
+    newlast = l[1]
+    
+    # rotate once
+    for i in l:
+        if i == length:
+            pass # don't want to out of bounds anything
+        elif i == length-1:
+            l[i] = newlast
+        else:
+            l[i] = l[i+1]
+    # copy and paste because lazy
+    for i in l:
+        if i == length:
+            pass # don't want to out of bounds anything
+        elif i == length-1:
+            l[i] = newlast
+        else:
+            l[i] = l[i+1]    
+    
 	return l
 
 def pop_append(l):
@@ -307,7 +362,14 @@ def pop_append(l):
 	# 1. remove the last 2 items from the list (use l.pop())
 	# 2. append the product of the popped values (use l.append(value))
 	# 3. append the sum of the first 2 items in the list.
-	
+	last = l[-1]
+    next = l[-2]
+    l.pop()
+    l.pop()
+    l.append(last*next)
+    l.append(l[0] + l[1])
+    
+    
 	return l
 
 
