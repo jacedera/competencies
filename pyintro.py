@@ -378,36 +378,55 @@ def pop_append(l):
 #########################################
 def basic_bool(a, b, c):
 	#write "if" statements that check if a,b,c are true or false
-	#note: do not do a==False or a==True
+	# extra note: i do not know what this means to me.
 	#return the number of True's
+    count = 0
+    if a:
+        count += 1
+    if b:
+        count += 1
+    if c:
+        count += 1
 	
-	return
+	return count
 
 def multi_bool(a,b):
 	#write an "if" statement that checks if the product of a and b
 	# is greater than 0 if so return True, else return False
-
-	return
+    p = a * b
+    if p > 0:
+        c = True
+    else:
+        c = False
+	return c
 
 def iter_bool(a):
 	#a is a list of integers, using a for loop, iterate through a to find 
 	#all instances of the number 7.  If a 6 appears, break out of the for loop.
 	#if the number of 7's found is 0, return the number 1337
 	b = 0
+    
+    for i in a:
+        if i == 7:
+            b += 1
+        if i == 6:
+            break
+    if b == 0:
+        b = 1337
 
 	return b
 
 def complex_bool_one(a,b,c):
 	# write a SINGLE return statement, an no other lines of code
 	# return true if a is greater than b and c
-	return
+	return (a>b and a>c) #double check if this is correct!
 
 def complex_bool_two(a,b,c):
 	# write a single return statment: return true if -
 		#1- one of a OR b is close to c (within 1 number)
 		#2- one of a OR b is far from the other two (>= 2 away)
 		#note: use abs() to find the absolute value.
-	return 
+	return (abs(a-c)<=1 ^ abs(b-c)<=1) or (abs(a-c)>=2 ^ abs(b-c) >=2) # figure out if this is the correct use of xor
 
 	
 ##################################################
@@ -418,8 +437,12 @@ def count_for(l):
 	# if the item begins with "xkcd", strip off "xkcd" frrom the beginning
 	# and replace it with "CAD".  Return the changed list.
 	# Note: Do not create a second list.  Operate on the exiting one.
-
-	return
+    for i in l:
+        if l[i][0] == "x" and l[i][1] == "k" and l[i][2] == "c" and l[i][3] == "d":
+            l[i] = "CAD"+l[4:] # ignore characters 0, 1, 2, 3.
+        else:
+            pass
+	return l
 	
 def iter_for(l):
 	# given a list of integers (l), iterate through each item
@@ -429,11 +452,20 @@ def iter_for(l):
 	even_sum = 0
 	odd_sum = 0
 	product = 0
-
+    
+    for i in l:
+        if l[i]%2 == 0:
+            even_sum += l[i]
+        else:
+            odd_sum += l[i]
+    
+    product = even_sum * odd_sum
+    
 	return product
 	
 def pop_while(l):
 	# Given a list of integers (l), use a while loop that tests if l evalutes to True (not empty)
+    # note: i don't understand what the above statement means by "if l evaluates to true" -JKA
 	# If l is not empty, use l.pop() to add the numbers in the list to m
 	# return l and m
 	m = []
@@ -454,8 +486,14 @@ def functions_one():
 	f = my_first_function
 	return f
 
+def my_first_function():
+    return True
+    
 def functions2():
 	# write a function named my_second_function
 	# have it return the product of a,b
 	f = my_second_function
 	return f
+
+def my_second_function(a, b):
+    return a*b
