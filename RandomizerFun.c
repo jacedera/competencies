@@ -10,7 +10,7 @@ int DiceRoll(){
 	char szNumDie[256], szSides[256], szRolls[256]; /// todo: dynamic allocation
 	
 	
-	srand((unsigned) time(NULL));
+	srand((unsigned) time());
 	
 // OBTAIN USER INPUT
 	
@@ -72,7 +72,7 @@ int DiceRoll(){
 // User has option to save result to a text file. 
 int CalculateCircleArea(){
 	double dbRadius, dbResult;
-	char szRadius[256], szAnswer;
+	char szRadius[256], szAnswer[256];
 	
 	const double dbPi = 3.14159;
 	//const char *szOutputFile; // for file writing purposes 
@@ -90,11 +90,35 @@ int CalculateCircleArea(){
 	
 	dbResult = 0.5 * dbPi * (dbRadius * dbRadius);
 	printf("Result is: %.3f.\n", dbResult);
+
+// the promised file stuff
 	printf("Would you like to save your result to a file? (Y/N)");
-// Still needs file stuff.
-	system("pause");
-	return 0;
+    scanf("%s", &szAnswer);
+
+// YES SAVE THE FILE
+    if((strcmp(szAnswer, "Y") == 0) || (strcmp(szAnswer, "y") == 0)){
+        printf("Saving the result... ");
+        FILE *ofResult = fopen("./CalculateCircleAreaResult.txt", "w");
+        fprintf(ofResult, "The area of a circle with radius %.f is %.3f.", dbRadius, dbResult);
+        fclose(ofResult);
+        printf("Done. \nResult saved to \"CalculateCircleAreaResult.txt\". Exiting...\n");
+        system("pause");
+        return 0;
+    }
+// NO DON'T SAVE THE FILE
+    else if((strcmp(szAnswer, "N") == 0) || (strcmp(szAnswer, "n") == 0)){
+        printf("Exiting without saving...\n");
+        system("pause");
+        return 0;
+    }
+// INVALID INPUT, DON'T SAVE THE FILE
+    else{
+        printf("Invalid input (neither Y, y, N, nor n). \nExiting without saving...\n");
+        system("pause");
+        return -1;
+    }
 } // CalculateCircleArea
+
 
 // CalculateCubeVolume. User inputs height, width, and depth. 
 // Input sanitation must be utilized. 
@@ -102,11 +126,12 @@ int CalculateCircleArea(){
 // User has option to save result to a text file.
 int CalculateCubeVolume(){
 	double dbLength, dbWidth, dbDepth, dbResult;
-    char szLength, szWidth, szDepth, szAnswer;
+    char szLength[256], szWidth[256], szDepth[256], szAnswer[256];
     
     // length
     printf("Input cube length: ");
     scanf("%s", &szLength);
+    dbLength = atof(szLength);
     if(dbLength<=0){
 		printf("Invalid (input is zero, begins with non-integers, or is negative)\nExiting...\n");
 		system("pause");
@@ -137,7 +162,28 @@ int CalculateCubeVolume(){
     
     printf("Result is: %.3f.\n", dbResult);
     printf("Would you like to save your result to a file? (Y/N)");
- // needs file stuff
-    system("pause");
-    return 0;
+    scanf("%s", &szAnswer);
+ 
+ // YES SAVE THE FILE
+    if((strcmp(szAnswer, "Y") == 0) || (strcmp(szAnswer, "y") == 0)){
+        printf("Saving the result... ");
+        FILE *ofResult = fopen("./CalculateCubeVolumeResult.txt", "w");
+        fprintf(ofResult, "The volume of a cube with length %.f, width %.f, and depth %.f is %.3f.", dbLength, dbWidth, dbDepth, dbResult);
+        fclose(ofResult);
+        printf("Done. \nResult saved to \"CalculateCubeVolumeResult.txt\". Exiting...\n");
+        system("pause");
+        return 0;
+    }
+// NO DON'T SAVE THE FILE
+    else if((strcmp(szAnswer, "N") == 0) || (strcmp(szAnswer, "n") == 0)){
+        printf("Exiting without saving...\n");
+        system("pause");
+        return 0;
+    }
+// INVALID INPUT, DON'T SAVE THE FILE
+    else{
+        printf("Invalid input (neither Y, y, N, nor n). \nExiting without saving...\n");
+        system("pause");
+        return -1;
+    }
 } // CalculateCubeVolume
