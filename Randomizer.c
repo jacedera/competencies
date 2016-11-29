@@ -18,13 +18,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>
+//#include <windows.h> // won't work in linux
 #include "RandomizerFun.c"
 
 
 int main(){
 	// note: use strings and atoi. Ignore anything that isn't 0, 1, 2, or 3.
-	char szUserInput[255];
+	//char szUserInput[255];
+	char *szUserInput;
 	int iChoice=9;
 			
 	while(iChoice != 0){
@@ -36,7 +37,8 @@ int main(){
 		printf("3: Volume of a Cube\n");
 		printf("Selection: ");
 
-        scanf("%s", &szUserInput);
+        //scanf("%s", &szUserInput);
+		szUserInput = ReadString(stdin, 10);
         
 		// atoi returns 0 if the input is invalid. we want to know if the input is a valid 0.
         if(strcmp(szUserInput, "0")==0 || strcmp(szUserInput, "1")==0 ||
@@ -62,7 +64,7 @@ int main(){
 		}
 		else {
 			printf("Invalid option, exiting...\n");
-			system("pause");
+			//system("pause");
 			return -1;
 		}
 	}
